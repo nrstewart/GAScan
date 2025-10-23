@@ -73,8 +73,8 @@ Optional but recommended:
 
 1. **Clone this repository**
    ```bash
-   git clone https://github.com/your-username/appscript-devcontainer.git
-   cd appscript-devcontainer
+   git clone https://github.com/nrstewart/gascan.git
+   cd gascan
    ```
 
 2. **Open in VSCode**
@@ -165,7 +165,7 @@ Use `Ctrl+Shift+P` → "Tasks: Run Task" to access:
 ## 📁 Project Structure
 
 ```
-📦 appscript-devcontainer/
+📦 gascan/
 ├── 📁 .devcontainer/          # DevContainer configuration
 │   ├── devcontainer.json      # Container settings & extensions
 │   └── Dockerfile             # Custom image with tools
