@@ -1,0 +1,279 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "TypeScript: Build",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": ["$tsc"],
+      "detail": "Compile TypeScript files to JavaScript for Apps Script"
+    },
+    {
+      "label": "TypeScript: Watch",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "watch"],
+      "group": "build",
+      "isBackground": true,
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": {
+        "owner": "typescript",
+        "source": "ts",
+        "applyTo": "closedDocuments",
+        "fileLocation": "relative",
+        "pattern": {
+          "regexp": "^([^\\s].*)\\((\\d+|\\d+,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+          "file": 1,
+          "location": 2,
+          "severity": 3,
+          "code": 4,
+          "message": 5
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "(^\\s*\\d{1,2}:\\d{2}:\\d{2}(?: AM| PM)? -)|(^====\\s+\\d{1,2}:\\d{2}:\\d{2}(?: AM| PM)?\\s+====$)"
+          },
+          "endsPattern": {
+            "regexp": "^\\s*\\d{1,2}:\\d{2}:\\d{2}(?: AM| PM)?\\s+-\\s+Found \\d+ errors?\\. Watching for file changes\\.$"
+          }
+        }
+      },
+      "detail": "Watch TypeScript files and compile on changes"
+    },
+    {
+      "label": "Clean Build",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "clean"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "Clean the dist directory"
+    },
+    {
+      "label": "CLASP: Login",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "clasp:login"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "detail": "Authenticate with Google Apps Script"
+    },
+    {
+      "label": "CLASP: Push",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "clasp:push"],
+      "group": "build",
+      "dependsOn": "TypeScript: Build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": {
+        "owner": "clasp",
+        "fileLocation": "relative",
+        "pattern": [
+          {
+            "regexp": "^(.*):(\\d+):(\\d+)\\s+-\\s+(error|warning|info)\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5
+          }
+        ]
+      },
+      "detail": "Build TypeScript and push to Google Apps Script"
+    },
+    {
+      "label": "CLASP: Deploy",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "clasp:deploy"],
+      "group": "build",
+      "dependsOn": "TypeScript: Build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "Build TypeScript and deploy to Google Apps Script"
+    },
+    {
+      "label": "CLASP: Open",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "clasp:open"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "Open the project in Google Apps Script editor"
+    },
+    {
+      "label": "Development: Build and Push",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev"],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": ["$tsc"],
+      "detail": "Quick development workflow: build and push to Apps Script"
+    },
+    {
+      "label": "Lint: Check",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "lint"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": ["$eslint-stylish"],
+      "detail": "Run ESLint to check code quality"
+    },
+    {
+      "label": "Lint: Fix",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "lint:fix"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": ["$eslint-stylish"],
+      "detail": "Run ESLint and automatically fix issues"
+    },
+    {
+      "label": "Format: Check",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "format:check"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "Check code formatting with Prettier"
+    },
+    {
+      "label": "Format: Fix",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "format"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "Format code with Prettier"
+    },
+    {
+      "label": "Setup: Install Dependencies",
+      "type": "shell",
+      "command": "npm",
+      "args": ["install"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "Install all npm dependencies"
+    },
+    {
+      "label": "Setup: Complete Project Setup",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "setup"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "detail": "Complete project setup: install dependencies and authenticate CLASP"
+    }
+  ]
+}

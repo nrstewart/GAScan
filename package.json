@@ -1,0 +1,53 @@
+{
+  "name": "appscript-devcontainer",
+  "version": "1.0.0",
+  "description": "Google Apps Script development environment with TypeScript, CLASP, and DevContainers",
+  "main": "dist/Code.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rm -rf dist",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "format:check": "prettier --check src/**/*.ts",
+    "clasp:login": "clasp login",
+    "clasp:push": "npm run build && clasp push",
+    "clasp:deploy": "npm run build && clasp deploy",
+    "clasp:open": "clasp open",
+    "dev": "npm run build && npm run clasp:push",
+    "setup": "npm install && clasp login"
+  },
+  "keywords": [
+    "google-apps-script",
+    "typescript",
+    "devcontainer",
+    "clasp",
+    "automation"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/google-apps-script": "^1.0.83",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/appscript-devcontainer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/appscript-devcontainer/issues"
+  },
+  "homepage": "https://github.com/your-username/appscript-devcontainer#readme"
+}

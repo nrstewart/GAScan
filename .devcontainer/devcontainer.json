@@ -1,0 +1,45 @@
+{
+  "name": "Google Apps Script DevContainer",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "runArgs": ["--env-file",".env"],
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "nodeGypDependencies": true,
+      "version": "lts"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions.allowed": {
+        "ms-vscode.vscode-typescript-next": true,
+        "esbenp.prettier-vscode": true,
+        "ms-vscode.vscode-eslint": true,
+        "Google.geminicodeassist": true,
+        "Google.geminicli": true,
+        "1Password.op-vscode": true
+    },
+      "settings": {
+        "typescript.preferences.useAliasesForRenames": false,
+        "typescript.suggest.autoImports": true,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "files.eol": "\n",
+        "typescript.updateImportsOnFileMove.enabled": "always"
+      }
+    }
+  },
+  "forwardPorts": [3000, 8080],
+  "postCreateCommand": ". ${NVM_DIR}/nvm.sh && nvm install --lts",
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/usr/local/bin"
+  },
+  "containerEnv": {
+    "CLASP_CONTAINER": "true"
+  },
+  "remoteUser": "vscode"
+}

@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "ms-vscode.vscode-typescript-next",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-eslint",
+    "Google.geminicodeassist",
+    "Google.geminicli",
+    "1Password.op-vscode",
+    "ms-vscode-remote.remote-containers"
+  ],
+  "unwantedRecommendations": [
+    "ms-vscode.vscode-json"
+  ]
+}
